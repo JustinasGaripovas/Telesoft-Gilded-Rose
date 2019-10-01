@@ -24,64 +24,6 @@ class ApplicationCommand extends Command
      */
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        $items = array(
-            new Item('+5 Dexterity Vest', 10, 20),
-            new Item('Aged Brie', 2, 0),
-            new Item('Aged Brie', 2, 0),
-            new Item('Aged Brie', 2, 0),
-            new Item('Aged Brie', 2, 0),
-            new Item('Aged Brie', 2, 0),
-            new Item('Aged Brie', 2, 0),
-            new Item('Aged Brie', 2, 0),
-            new Item('Aged Brie', 2, 0),
-            new Item('Aged Brie', 2, 0),
-            new Item('Aged Brie', 2, 0),
-            new Item('Aged Brie', 2, 0),
-            new Item('Elixir of the Mongoose', 5, 7),
-            new Item('Elixir of the Mongoose', 5, 7),
-            new Item('Elixir of the Mongoose', 5, 7),
-            new Item('Elixir of the Mongoose', 5, 7),
-            new Item('Elixir of the Mongoose', 5, 7),
-            new Item('Elixir of the Mongoose', 5, 7),
-            new Item('Elixir of the Mongoose', 5, 7),
-            new Item('Elixir of the Mongoose', 5, 7),
-            new Item('Elixir of the Mongoose', 5, 7),
-            new Item('Elixir of the Mongoose', 5, 7),
-            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
-            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
-            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
-            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
-            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
-            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
-            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
-            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
-            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
-            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
-            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
-            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
-            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
-            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
-            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
-            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
-            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
-            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
-            new Item('Sulfuras, Hand of Ragnaros', -1, 80),
-            new Item('Backstage passes to a TAFKAL80ETC concert', 15, 20),
-            new Item('Backstage passes to a TAFKAL80ETC concert', 10, 49),
-            new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49),
-            new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49),
-            new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49),
-            new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49),
-            new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49),
-            new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49),
-            new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49),
-            new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49),
-            new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49),
-            new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49),
-            new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49),
-            new Item('Conjured Mana Cake', 3, 6)
-        );
-
         $output->writeln('<comment>Starting gilded rose process</comment>');
 
         $start = hrtime(true);
@@ -89,16 +31,9 @@ class ApplicationCommand extends Command
         $process = new GildedRose($items);
         $process->updateQuality();
 
-
-        $end = hrtime(true);
-
         $output->writeln($this->timerEnd($start));
 
-
-
-
         return 0;
-
     }
 
     private function timerEnd($startTime): float
