@@ -4,6 +4,8 @@
 namespace App\Command;
 
 
+use App\Controller\GildedRose;
+use App\Model\Item;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -22,19 +24,86 @@ class ApplicationCommand extends Command
      */
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        $stopwatch = new Stopwatch();
-        $stopwatch->start('app-gilded-rose');
+        $items = array(
+            new Item('+5 Dexterity Vest', 10, 20),
+            new Item('Aged Brie', 2, 0),
+            new Item('Aged Brie', 2, 0),
+            new Item('Aged Brie', 2, 0),
+            new Item('Aged Brie', 2, 0),
+            new Item('Aged Brie', 2, 0),
+            new Item('Aged Brie', 2, 0),
+            new Item('Aged Brie', 2, 0),
+            new Item('Aged Brie', 2, 0),
+            new Item('Aged Brie', 2, 0),
+            new Item('Aged Brie', 2, 0),
+            new Item('Aged Brie', 2, 0),
+            new Item('Elixir of the Mongoose', 5, 7),
+            new Item('Elixir of the Mongoose', 5, 7),
+            new Item('Elixir of the Mongoose', 5, 7),
+            new Item('Elixir of the Mongoose', 5, 7),
+            new Item('Elixir of the Mongoose', 5, 7),
+            new Item('Elixir of the Mongoose', 5, 7),
+            new Item('Elixir of the Mongoose', 5, 7),
+            new Item('Elixir of the Mongoose', 5, 7),
+            new Item('Elixir of the Mongoose', 5, 7),
+            new Item('Elixir of the Mongoose', 5, 7),
+            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
+            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
+            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
+            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
+            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
+            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
+            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
+            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
+            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
+            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
+            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
+            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
+            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
+            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
+            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
+            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
+            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
+            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
+            new Item('Sulfuras, Hand of Ragnaros', -1, 80),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 15, 20),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 10, 49),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49),
+            new Item('Conjured Mana Cake', 3, 6)
+        );
+
+        $output->writeln('<comment>Starting gilded rose process</comment>');
+
+        $start = hrtime(true);
+
+        $process = new GildedRose($items);
+        $process->updateQuality();
 
 
-        $output->writeln('<comment>Starting </comment>');
+        $end = hrtime(true);
+
+        $output->writeln($this->timerEnd($start));
 
 
 
-        $event = $stopwatch->stop('app-gilded-rose');
-        $output->writeln($event->getDuration());
 
         return 0;
 
+    }
+
+    private function timerEnd($startTime): float
+    {
+        return ((hrtime(true) - $startTime)/1e+6);
     }
 
 }
