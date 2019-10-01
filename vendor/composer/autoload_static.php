@@ -17,6 +17,7 @@ class ComposerStaticInit7c9e0a92e691c6c7e57d37c6e215612f
             'Symfony\\Polyfill\\Php73\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Contracts\\Service\\' => 26,
+            'Symfony\\Component\\Stopwatch\\' => 28,
             'Symfony\\Component\\Console\\' => 26,
         ),
         'P' => 
@@ -41,6 +42,10 @@ class ComposerStaticInit7c9e0a92e691c6c7e57d37c6e215612f
         'Symfony\\Contracts\\Service\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/service-contracts',
+        ),
+        'Symfony\\Component\\Stopwatch\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/stopwatch',
         ),
         'Symfony\\Component\\Console\\' => 
         array (

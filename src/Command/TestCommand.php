@@ -21,6 +21,12 @@ class TestCommand extends Command
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $output->writeln('<comment>Testing testing</comment>');
+        $name = $input->getArgument('name');
+
+        if (!empty($name))
+            $output->writeln(sprintf('Hi %s', $name));
+
+
     }
 
 }
