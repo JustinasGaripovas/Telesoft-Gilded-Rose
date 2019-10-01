@@ -6,6 +6,7 @@ namespace App\Command;
 
 use App\Controller\GildedRose;
 use App\Model\Item;
+use App\Model\ItemManager;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -28,7 +29,9 @@ class ApplicationCommand extends Command
 
         $start = hrtime(true);
 
-        $process = new GildedRose($items);
+        $itemStorage = new ItemManager();
+
+        $process = new GildedRose($itemStorage->loadItems());
         $process->updateQuality();
 
         $output->writeln($this->timerEnd($start));

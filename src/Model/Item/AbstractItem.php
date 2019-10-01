@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Model;
 
-class Item
+namespace App\Model\Item;
+
+
+abstract class AbstractItem
 {
     public $name;
     public $sell_in;
@@ -17,4 +19,6 @@ class Item
     public function __toString() {
         return "{$this->name}, {$this->sell_in}, {$this->quality}";
     }
+
+    abstract public function process();
 }
