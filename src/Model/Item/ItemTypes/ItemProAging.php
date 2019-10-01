@@ -4,6 +4,7 @@
 namespace App\Model\Item\ItemTypes;
 
 
+use App\Enum\ItemValueEnum;
 use App\Model\Item\AbstractItem;
 
 class ItemProAging extends AbstractItem
@@ -26,6 +27,6 @@ class ItemProAging extends AbstractItem
 
     public function process()
     {
-        // TODO: Implement process() method.
+        $this->valueModifier(ItemValueEnum::QUALITY_PRO_AGING_AGING,ItemValueEnum::SELL_IN_NORMAL_AGING);
     }
 }

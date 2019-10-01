@@ -5,6 +5,7 @@ namespace App\Model\Item\ItemTypes;
 
 
 
+use App\Enum\ItemValueEnum;
 use App\Model\Item\AbstractItem;
 
 class ItemConjured extends AbstractItem
@@ -27,6 +28,9 @@ class ItemConjured extends AbstractItem
 
     public function process()
     {
-        // TODO: Implement process() method.
+        if ($this->isExpired())
+            $this->valueModifier(ItemValueEnum::QUALITY_NORMAL_AGING*4,ItemValueEnum::SELL_IN_NORMAL_AGING);
+        else
+            $this->valueModifier(ItemValueEnum::QUALITY_NORMAL_AGING*2,ItemValueEnum::SELL_IN_NORMAL_AGING);
     }
 }

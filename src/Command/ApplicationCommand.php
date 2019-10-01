@@ -5,6 +5,7 @@ namespace App\Command;
 
 
 use App\Controller\GildedRose;
+use App\Enum\ItemValueEnum;
 use App\Model\Item;
 use App\Model\ItemManager;
 use Symfony\Component\Console\Command\Command;
@@ -32,7 +33,12 @@ class ApplicationCommand extends Command
         $itemStorage = new ItemManager();
 
         $process = new GildedRose($itemStorage->loadItems());
-        $process->updateQuality();
+
+
+        for ($i=0;$i<=ItemValueEnum::DAYS;$i++) {
+            $process->updateQuality();
+            $itemStorage->printOneDay($i);
+        }
 
         $output->writeln($this->timerEnd($start));
 

@@ -5,6 +5,7 @@ namespace App\Model\Item\ItemTypes;
 
 
 
+use App\Enum\ItemValueEnum;
 use App\Model\Item\AbstractItem;
 
 class ItemLegendary extends AbstractItem
@@ -27,6 +28,6 @@ class ItemLegendary extends AbstractItem
 
     public function process()
     {
-        // TODO: Implement process() method.
+        $this->quality = ItemValueEnum::QUALITY_LEGENDARY;
     }
 }

@@ -4,6 +4,7 @@
 namespace App\Model\Item\ItemTypes;
 
 
+use App\Enum\ItemValueEnum;
 use App\Model\Item\AbstractItem;
 
 class ItemNormal extends AbstractItem
@@ -31,6 +32,12 @@ class ItemNormal extends AbstractItem
 
     public function process()
     {
-        // TODO: Implement process() method.
+        //  Aging logic
+        if ($this->isExpired())
+            $this->valueModifier(ItemValueEnum::QUALITY_NORMAL_AGING*2,ItemValueEnum::SELL_IN_NORMAL_AGING);
+        else
+            $this->valueModifier(ItemValueEnum::QUALITY_NORMAL_AGING,ItemValueEnum::SELL_IN_NORMAL_AGING);
+
+
     }
 }

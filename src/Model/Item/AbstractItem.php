@@ -4,6 +4,8 @@
 namespace App\Model\Item;
 
 
+use App\Enum\ItemValueEnum;
+
 abstract class AbstractItem
 {
     public $name;
@@ -21,4 +23,25 @@ abstract class AbstractItem
     }
 
     abstract public function process();
+
+    protected function valueModifier($qualityStep, $sellInStep)
+    {
+        $this->sell_in = $this->sell_in + $sellInStep;
+
+        if ($this->quality + $qualityStep < ItemValueEnum::QUALITY_FLOOR) {
+            $this->quality = 0;
+            return;
+        }
+
+        if ($this->quality + $qualityStep < ItemValueEnum::QUALITY_CEILING) {
+            $this->quality = $this->quality + $qualityStep;
+        }else{
+            $this->quality = ItemValueEnum::QUALITY_CEILING;
+        }
+    }
+
+    protected function isExpired($dayOffset = 0): bool
+    {
+        return $this->sell_in < $dayOffset;
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Model;
 
 use App\Enum\ItemTypeEnum;
 use App\Model\Item\ItemTypes\ItemConjured;
+use App\Model\Item\ItemTypes\ItemEventPass;
 use App\Model\Item\ItemTypes\ItemLegendary;
 use App\Model\Item\ItemTypes\ItemNormal;
 use App\Model\Item\ItemTypes\ItemProAging;
@@ -21,13 +22,17 @@ class ItemManager
     {
         $this->initializeItems();
         $this->assignItemType();
-
-        foreach ($this->items as $item)
-            var_dump(get_class($item));
-
-
-        die();
         return $this->items;
+    }
+
+    public function printOneDay($day)
+    {
+        echo("-------- Day $day --------\n");
+        echo("name, sellIn, quality\n");
+        foreach ($this->items as $item) {
+            echo $item . PHP_EOL;
+        }
+        echo PHP_EOL;
     }
 
     // Might make them JSON format
@@ -67,6 +72,11 @@ class ItemManager
         {
             if ($this->contains($item[0], $name))
                 return new ItemProAging($item);
+        }
+        foreach (ItemTypeEnum::EVENT_PASS as $name)
+        {
+            if ($this->contains($item[0], $name))
+                return new ItemEventPass($item);
         }
 
         foreach (ItemTypeEnum::LEGENDARY as $name)
