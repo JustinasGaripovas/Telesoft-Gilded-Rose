@@ -13,11 +13,9 @@ class ItemManager
 {
     private $items = [];
 
-    public function __construct()
-    {
-
-    }
-
+    /**
+     * @return array
+     */
     public function loadItems(): array
     {
         $this->initializeItems();
@@ -25,8 +23,12 @@ class ItemManager
         return $this->items;
     }
 
+    /**
+     * @param $day
+     */
     public function printOneDay($day)
     {
+        echo PHP_EOL;
         echo("-------- Day $day --------\n");
         echo("name, sellIn, quality\n");
         foreach ($this->items as $item) {
@@ -35,10 +37,12 @@ class ItemManager
         echo PHP_EOL;
     }
 
-    // Might make them JSON format
+    /**
+     * Might make them JSON format
+     */
     private function initializeItems(){
         $this->items = array(
-            ['+5 Dexterity Vest', 10, 20],
+           ['+5 Dexterity Vest', 10, 20],
            ['Sulfuras', 2, 0],
            ['Aged Brie', 2, 0],
            ['Elixir of the Mongoose', 5, 7],
@@ -55,6 +59,12 @@ class ItemManager
         );
     }
 
+    public function insertItems(array $items)
+    {
+        $this->items = $items;
+        $this->assignItemType();
+    }
+
     private function assignItemType()
     {
         $temporaryArray = [];
@@ -65,7 +75,12 @@ class ItemManager
         $this->items = $temporaryArray;
     }
 
-    // Need to make constraints to allow return on ITEM TYPE objects
+    /**
+     * Need to make constraints to allow return on ITEM TYPE objects
+     *
+     * @param array $item
+     * @return ItemConjured|ItemEventPass|ItemLegendary|ItemNormal|ItemProAging
+     */
     private function guessType(array $item)
     {
         foreach (ItemTypeEnum::PRO_AGING as $name)
@@ -94,12 +109,39 @@ class ItemManager
         return new ItemNormal($item);
     }
 
-    function contains($haystack, $needle)
+    public function getArray()
+    {
+        return $this->items;
+    }
+
+    /**
+     * Checks if heystack string contains needle
+     *
+     * @param $haystack
+     * @param $needle
+     * @return bool
+     */
+    private function contains($haystack, $needle)
     {
         return strpos($haystack, $needle) !== false;
     }
 
+    public function getLength()
+    {
+        return count($this->items);
+    }
 
+    /**
+     * @param $index
+     * @return mixed|null
+     */
+    public function getItem($index)
+    {
+        if ($index >= 0 && $index <= $this->getLength())
+            return $this->items[$index];
+        else
+            return null;
+    }
 
 
 }
