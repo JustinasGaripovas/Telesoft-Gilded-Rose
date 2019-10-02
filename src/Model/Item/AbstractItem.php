@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Model\Item;
-
 
 use App\Enum\ItemValueEnum;
 
@@ -22,6 +20,13 @@ abstract class AbstractItem
         return "{$this->name}, {$this->sell_in}, {$this->quality}";
     }
 
+    /**
+     *  Having calculations/processes here is not entirely recommended.
+     *  But for this current project, I don't think these processes being here will be a cause for concern
+     *  If we would follow MVC developing patterns, the best option would be to each class's calculations/processes
+     *  In controller or separate service.
+     */
+
     abstract public function process();
 
     /**
@@ -34,31 +39,15 @@ abstract class AbstractItem
     {
         $this->sell_in += $sellInStep;
 
-        if ($this->quality + $qualityStep < ItemValueEnum::QUALITY_FLOOR) {
+        if($this->quality + $qualityStep < ItemValueEnum::QUALITY_FLOOR)
+            $this->quality = ItemValueEnum::QUALITY_FLOOR;
 
-            if ($this->quality < ItemValueEnum::QUALITY_FLOOR)
-            {
-                $this->quality = 0;
+        if($this->quality + $qualityStep > ItemValueEnum::QUALITY_CEILING)
+            $this->quality = ItemValueEnum::QUALITY_CEILING;
 
-                if ($this->quality + $qualityStep >= ItemValueEnum::QUALITY_FLOOR)
-                    $this->quality += $qualityStep;
-
-            }
-            return;
-        }
-
-        if ($this->quality + $qualityStep > ItemValueEnum::QUALITY_CEILING) {
-            if ($this->quality > ItemValueEnum::QUALITY_CEILING)
-            {
-                $this->quality = ItemValueEnum::QUALITY_CEILING;
-
-                if ($this->quality + $qualityStep <= ItemValueEnum::QUALITY_CEILING)
-                    $this->quality += $qualityStep;
-
-            }
-        }else{
-            $this->quality += $qualityStep;
-        }
+        if ($this->quality + $qualityStep >= ItemValueEnum::QUALITY_FLOOR)
+            if ($this->quality + $qualityStep <= ItemValueEnum::QUALITY_CEILING)
+                $this->quality += $qualityStep;
     }
 
     /**

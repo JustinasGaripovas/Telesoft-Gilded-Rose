@@ -48,4 +48,13 @@ class ItemEventTest extends TestCase
         $this->assertEquals($this->itemManager->getItem(4), new ItemEventPass(['Backstage passes crazy', -104, 0]));
     }
 
+    public function testOneEventItemBehaviour()
+    {
+        for ($i = 0 ;$i<100;$i++) {
+            $this->gildedRose->updateQuality();
+        }
+
+        $this->assertEquals($this->itemManager->getItem(0), new ItemEventPass(['Backstage passes fresh', 0, 50]));
+    }
+
 }

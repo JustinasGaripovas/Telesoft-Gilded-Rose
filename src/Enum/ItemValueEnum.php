@@ -1,12 +1,14 @@
 <?php
 
-
 namespace App\Enum;
 
-
+/**
+ * Class ItemValueEnum
+ * @package App\Enum
+ */
 class ItemValueEnum
 {
-    const DAYS = 15;
+    const DAYS = 10;
 
     const SELL_IN_NORMAL_AGING = -1;
     const SELL_IN_EVENT_RANGES = [6,11];

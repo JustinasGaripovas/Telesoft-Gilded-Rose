@@ -47,4 +47,15 @@ class ItemProAgingTest extends TestCase
         $this->assertEquals($this->itemManager->getItem(3), new ItemProAging(['Aged Brie late after sell date', -14, 4]));
         $this->assertEquals($this->itemManager->getItem(4), new ItemProAging(['Aged Brie crazy', -104, 50]));
     }
+
+    public function testOneProAgingItemBehaviour()
+    {
+        for ($i = 0 ;$i<10;$i++) {
+            $this->gildedRose->updateQuality();
+            var_dump(($this->itemManager->getItem(0)));
+        }
+
+        $this->assertEquals($this->itemManager->getItem(0), new ItemProAging(['Aged Brie fresh', 90, 10]));
+    }
+
 }

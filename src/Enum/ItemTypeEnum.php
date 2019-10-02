@@ -1,9 +1,11 @@
 <?php
 
-
 namespace App\Enum;
 
-
+/**
+ * Class ItemTypeEnum
+ * @package App\Enum
+ */
 class ItemTypeEnum
 {
     const CONJURED=['Conjured'];
