@@ -87,30 +87,37 @@ class ItemManager
      */
     private function guessType(array $item)
     {
-        foreach (ItemTypeEnum::PRO_AGING as $name)
-        {
-            if ($this->contains($item[0], $name))
-                return new ItemProAging($item);
-        }
-        foreach (ItemTypeEnum::EVENT_PASS as $name)
-        {
-            if ($this->contains($item[0], $name))
-                return new ItemEventPass($item);
-        }
+        if ($this->doesHaystackContainArrayValues(ItemTypeEnum::PRO_AGING, $item[0]))
+            return new ItemProAging($item);
 
-        foreach (ItemTypeEnum::LEGENDARY as $name)
-        {
-            if ($this->contains($item[0], $name))
-                return new ItemLegendary($item);
-        }
+        if ($this->doesHaystackContainArrayValues(ItemTypeEnum::EVENT_PASS, $item[0]))
+            return new ItemEventPass($item);
 
-        foreach (ItemTypeEnum::CONJURED as $name)
-        {
-            if ($this->contains($item[0], $name))
-                return new ItemConjured($item);
-        }
+        if ($this->doesHaystackContainArrayValues(ItemTypeEnum::LEGENDARY, $item[0]))
+            return new ItemLegendary($item);
+
+        if ($this->doesHaystackContainArrayValues(ItemTypeEnum::CONJURED, $item[0]))
+            return new ItemConjured($item);
 
         return new ItemNormal($item);
+    }
+
+    /**
+     * Checks if array values (strings) are present in heystack string
+     *
+     * @param $array
+     * @param $haystack
+     * @return bool
+     */
+    public function doesHaystackContainArrayValues($array, $haystack): bool
+    {
+        foreach ($array as $name)
+        {
+            if ($this->contains($haystack, $name))
+                return true;
+        }
+
+        return false;
     }
 
     public function getArray()

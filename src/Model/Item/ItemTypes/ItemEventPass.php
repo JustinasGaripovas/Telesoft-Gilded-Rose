@@ -39,6 +39,5 @@ class ItemEventPass extends AbstractItem
         }else{
             $this->valueModifier(ItemValueEnum::QUALITY_EVENT_VALUE_DEFAULT, ItemValueEnum::SELL_IN_NORMAL_AGING);
         }
-
     }
 }

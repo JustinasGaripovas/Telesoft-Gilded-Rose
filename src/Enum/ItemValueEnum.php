@@ -21,6 +21,5 @@ class ItemValueEnum
     const QUALITY_PRO_AGING_AGING = 1;
     const QUALITY_EVENT_VALUE = [3,2];
     const QUALITY_EVENT_VALUE_DEFAULT = 1;
-    const QUALITY_EVENT_RANGES = [3,2];
     const QUALITY_LEGENDARY = 80;
 }
