@@ -38,9 +38,9 @@ class ApplicationCommand extends Command
 
         $process = new GildedRose($itemStorage->loadItems());
 
-        for ($i=0;$i<=ItemValueEnum::DAYS;$i++) {
-            $process->updateQuality();
+        for ($i=0;$i<ItemValueEnum::DAYS;$i++) {
             $itemStorage->printOneDay($i);
+            $process->updateQuality();
         }
 
         $output->writeln("<comment>End of process in {$this->timerEnd($start)} milliseconds</comment>");

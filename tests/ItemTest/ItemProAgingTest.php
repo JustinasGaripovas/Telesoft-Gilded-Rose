@@ -52,6 +52,7 @@ class ItemProAgingTest extends TestCase
     {
         for ($i = 0 ;$i<10;$i++) {
             $this->gildedRose->updateQuality();
+            var_dump(($this->itemManager->getItem(0)));
         }
 
         $this->assertEquals($this->itemManager->getItem(0), new ItemProAging(['Aged Brie fresh', 90, 10]));

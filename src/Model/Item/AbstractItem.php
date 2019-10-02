@@ -41,31 +41,15 @@ abstract class AbstractItem
     {
         $this->sell_in += $sellInStep;
 
-        if ($this->quality + $qualityStep < ItemValueEnum::QUALITY_FLOOR) {
+        if($this->quality + $qualityStep < ItemValueEnum::QUALITY_FLOOR)
+            $this->quality = ItemValueEnum::QUALITY_FLOOR;
 
-            if ($this->quality < ItemValueEnum::QUALITY_FLOOR)
-            {
-                $this->quality = 0;
+        if($this->quality + $qualityStep > ItemValueEnum::QUALITY_CEILING)
+            $this->quality = ItemValueEnum::QUALITY_CEILING;
 
-                if ($this->quality + $qualityStep >= ItemValueEnum::QUALITY_FLOOR)
-                    $this->quality += $qualityStep;
-
-            }
-            return;
-        }
-
-        if ($this->quality + $qualityStep > ItemValueEnum::QUALITY_CEILING) {
-            if ($this->quality > ItemValueEnum::QUALITY_CEILING)
-            {
-                $this->quality = ItemValueEnum::QUALITY_CEILING;
-
-                if ($this->quality + $qualityStep <= ItemValueEnum::QUALITY_CEILING)
-                    $this->quality += $qualityStep;
-
-            }
-        }else{
-            $this->quality += $qualityStep;
-        }
+        if ($this->quality + $qualityStep >= ItemValueEnum::QUALITY_FLOOR)
+            if ($this->quality + $qualityStep <= ItemValueEnum::QUALITY_CEILING)
+                $this->quality += $qualityStep;
     }
 
     /**

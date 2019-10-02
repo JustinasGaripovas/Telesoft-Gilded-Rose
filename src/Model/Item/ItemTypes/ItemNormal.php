@@ -32,7 +32,6 @@ class ItemNormal extends AbstractItem
 
     public function process()
     {
-        //  Aging logic
         if ($this->isExpired())
             $this->valueModifier(ItemValueEnum::QUALITY_NORMAL_AGING*2,ItemValueEnum::SELL_IN_NORMAL_AGING);
         else
