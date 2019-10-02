@@ -48,6 +48,13 @@ Run seperate test
 ```
 vendor/bin/phpunit tests/PATH_TO_SIGLE_TEST_FILE
 ```
+
+## Extra tought about project
+
+ - Edited Item class, added functionality there because it was convenient. Technically it should be in different stop.
+ - Slightly changed item array input logic, now it accepts unassociated array (That gets transformed to item array) insted of Item array, not sure if thats allowed. Did it to seperate each uniques item logic, for easier to understand code.
+
+
 ## Versioning
 
 I used [GitHub](http://github.com/) for versioning. 
