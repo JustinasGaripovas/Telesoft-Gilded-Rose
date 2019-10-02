@@ -50,7 +50,6 @@ class ItemManager
 
     /**
      * @param array $items
-     * @return array
      */
     public function insertItems(array $items)
     {

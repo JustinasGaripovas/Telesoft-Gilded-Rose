@@ -35,7 +35,6 @@ abstract class AbstractItem
      * Simple quality / sell in value modifier with constrains
      *
      * @param $qualityStep
-     * @param $sellInStep
      */
     protected function qualityModifier($qualityStep)
     {

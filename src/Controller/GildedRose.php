@@ -20,6 +20,9 @@ class GildedRose
         $this->items = $itemManager->getArray();
     }
 
+    /**
+     * Loops updateQuality for @param int $days
+     */
     public function loopUpdateQuality(int $days)
     {
         for ($i=0;$i<$days;$i++) {
