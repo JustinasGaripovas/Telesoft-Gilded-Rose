@@ -16,7 +16,7 @@ class ApplicationCommand extends Command
     {
         $this
             ->setName('start')
-            ->setDescription('Starts the GildedRose problem');
+            ->setDescription('Starts the GildedRose solver!');
     }
 
     /**
@@ -40,7 +40,6 @@ class ApplicationCommand extends Command
         }
 
         $output->writeln("<comment>End of process in {$this->timerEnd($start)} milliseconds</comment>");
-        $output->writeln($this->timerEnd($start));
 
         return 0;
     }

@@ -38,7 +38,7 @@ class ItemManager
     }
 
     /**
-     * Might make them JSON format
+     * Might make them JSON format, or database entries, data is super static here.
      */
     private function initializeItems(){
         $this->items =
