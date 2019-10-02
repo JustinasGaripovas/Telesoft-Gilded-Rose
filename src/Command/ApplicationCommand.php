@@ -22,8 +22,7 @@ class ApplicationCommand extends Command
             ->setName('start')
             ->setDescription('Starts the GildedRose problem');
     }
-    /**
-     */
+
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $output->writeln('<comment>Starting gilded rose process</comment>');
@@ -34,12 +33,12 @@ class ApplicationCommand extends Command
 
         $process = new GildedRose($itemStorage->loadItems());
 
-
         for ($i=0;$i<=ItemValueEnum::DAYS;$i++) {
             $process->updateQuality();
             $itemStorage->printOneDay($i);
         }
 
+        $output->writeln("<comment>End of process in {$this->timerEnd($start)} milliseconds</comment>");
         $output->writeln($this->timerEnd($start));
 
         return 0;

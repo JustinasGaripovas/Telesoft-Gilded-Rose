@@ -29,5 +29,6 @@ class ItemLegendary extends AbstractItem
     public function process()
     {
         $this->quality = ItemValueEnum::QUALITY_LEGENDARY;
+        $this->sell_in = 0;
     }
 }

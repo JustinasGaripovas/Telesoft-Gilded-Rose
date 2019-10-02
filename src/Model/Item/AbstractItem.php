@@ -24,22 +24,49 @@ abstract class AbstractItem
 
     abstract public function process();
 
+    /**
+     * Simple quality / sell in value modifier with constrains
+     *
+     * @param $qualityStep
+     * @param $sellInStep
+     */
     protected function valueModifier($qualityStep, $sellInStep)
     {
-        $this->sell_in = $this->sell_in + $sellInStep;
+        $this->sell_in += $sellInStep;
 
         if ($this->quality + $qualityStep < ItemValueEnum::QUALITY_FLOOR) {
-            $this->quality = 0;
+
+            if ($this->quality < ItemValueEnum::QUALITY_FLOOR)
+            {
+                $this->quality = 0;
+
+                if ($this->quality + $qualityStep >= ItemValueEnum::QUALITY_FLOOR)
+                    $this->quality += $qualityStep;
+
+            }
             return;
         }
 
-        if ($this->quality + $qualityStep < ItemValueEnum::QUALITY_CEILING) {
-            $this->quality = $this->quality + $qualityStep;
+        if ($this->quality + $qualityStep > ItemValueEnum::QUALITY_CEILING) {
+            if ($this->quality > ItemValueEnum::QUALITY_CEILING)
+            {
+                $this->quality = ItemValueEnum::QUALITY_CEILING;
+
+                if ($this->quality + $qualityStep <= ItemValueEnum::QUALITY_CEILING)
+                    $this->quality += $qualityStep;
+
+            }
         }else{
-            $this->quality = ItemValueEnum::QUALITY_CEILING;
+            $this->quality += $qualityStep;
         }
     }
 
+    /**
+     * Expiration function, also adapted to fit EVENT day checking tasks
+     *
+     * @param int $dayOffset
+     * @return bool
+     */
     protected function isExpired($dayOffset = 0): bool
     {
         return $this->sell_in < $dayOffset;

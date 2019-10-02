@@ -11,6 +11,10 @@ class GildedRose
         $this->items = $items;
     }
 
+    /**
+     * Updates each items quality and sell in values once
+     * Items may be found in src/Model/Item/ItemTypes/*
+     */
     public function updateQuality() {
         foreach ($this->items as $item) {
             $item->process();
