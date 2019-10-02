@@ -4,10 +4,11 @@
 
 require_once 'vendor/autoload.php';
 
+use App\Command\ApplicationCommand;
 use App\Command\TestCommand;
-use App\Model\Item;
 use Symfony\Component\Console\Application;
 
 $app = new Application('Console App', 'v1.0.0');
 $app -> add(new TestCommand());
+$app -> add(new ApplicationCommand());
 $app -> run();
