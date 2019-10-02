@@ -8,7 +8,6 @@ use App\Model\Item\AbstractItem;
 class ItemEventPass extends AbstractItem
 {
     /**
-     *
      * Would want to make the array associative, but currently, thinking about leaving it as is, to maintain original input methods
      *
      * array[0] => name

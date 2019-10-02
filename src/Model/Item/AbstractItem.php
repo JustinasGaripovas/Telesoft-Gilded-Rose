@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Model\Item;
-
 
 use App\Enum\ItemValueEnum;
 

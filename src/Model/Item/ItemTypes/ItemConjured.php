@@ -1,9 +1,6 @@
 <?php
 
-
 namespace App\Model\Item\ItemTypes;
-
-
 
 use App\Enum\ItemValueEnum;
 use App\Model\Item\AbstractItem;
@@ -11,7 +8,6 @@ use App\Model\Item\AbstractItem;
 class ItemConjured extends AbstractItem
 {
     /**
-     *
      * Would want to make the array associative, but currently, thinking about leaving it as is, to maintain original input methods
      *
      * array[0] => name
