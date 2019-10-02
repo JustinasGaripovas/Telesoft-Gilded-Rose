@@ -27,7 +27,7 @@ class ItemNormalTest extends TestCase
         );
 
         $this->gildedRose = new GildedRose(
-            $this->itemManager->getArray()
+            $this->itemManager
         );
 
         parent::setUp();
@@ -35,9 +35,7 @@ class ItemNormalTest extends TestCase
 
     public function testNormalItemBehaviour()
     {
-        $this->gildedRose->updateQuality();
-        $this->gildedRose->updateQuality();
-        $this->gildedRose->updateQuality();
+        $this->gildedRose->loopUpdateQuality(3);
 
         $this->assertEquals($this->itemManager->getItem(0), new ItemNormal(['Normal item', 7, 7]));
         $this->assertEquals($this->itemManager->getItem(1), new ItemNormal(['Even more normal item', -3, 5]));
@@ -48,9 +46,7 @@ class ItemNormalTest extends TestCase
 
     public function testOneNormalItemBehaviour()
     {
-        for ($i = 0 ;$i<10;$i++) {
-            $this->gildedRose->updateQuality();
-        }
+        $this->gildedRose->loopUpdateQuality(10);
 
         $this->assertEquals($this->itemManager->getItem(0), new ItemNormal(['Normal item', 0, 0]));
     }

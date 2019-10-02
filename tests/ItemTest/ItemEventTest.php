@@ -28,7 +28,7 @@ class ItemEventTest extends TestCase
         );
 
         $this->gildedRose = new GildedRose(
-            $this->itemManager->getArray()
+            $this->itemManager
         );
 
         parent::setUp();
@@ -36,10 +36,7 @@ class ItemEventTest extends TestCase
 
     public function testNormalItemBehaviour()
     {
-        $this->gildedRose->updateQuality();
-        $this->gildedRose->updateQuality();
-        $this->gildedRose->updateQuality();
-        $this->gildedRose->updateQuality();
+        $this->gildedRose->loopUpdateQuality(4);
 
         $this->assertEquals($this->itemManager->getItem(0), new ItemEventPass(['Backstage passes fresh', 96, 4]));
         $this->assertEquals($this->itemManager->getItem(1), new ItemEventPass(['Backstage passes close to sell date', 1, 12]));
@@ -50,11 +47,8 @@ class ItemEventTest extends TestCase
 
     public function testOneEventItemBehaviour()
     {
-        for ($i = 0 ;$i<100;$i++) {
-            $this->gildedRose->updateQuality();
-        }
+        $this->gildedRose->loopUpdateQuality(100);
 
         $this->assertEquals($this->itemManager->getItem(0), new ItemEventPass(['Backstage passes fresh', 0, 50]));
     }
-
 }

@@ -14,16 +14,6 @@ class ItemManager
     private $items = [];
 
     /**
-     * @return array
-     */
-    public function loadItems(): array
-    {
-        $this->initializeItems();
-        $this->assignItemType();
-        return $this->items;
-    }
-
-    /**
      * @param $day
      */
     public function printOneDay($day)
@@ -40,8 +30,9 @@ class ItemManager
     /**
      * Might make them JSON format, or database entries, data is super static here.
      */
-    private function initializeItems(){
-        $this->items =
+    public function initializeItems()
+    {
+        $temporaryArray =
         [
             ['+5 Dexterity Vest', 10, 20],
             ['Aged Brie', 2, 0],
@@ -53,15 +44,17 @@ class ItemManager
             ['Backstage passes to a TAFKAL80ETC concert', 5, 49],
             ['Conjured Mana Cake', 3, 6]
         ];
+
+        $this->items = $this->assignItemType($temporaryArray);
     }
 
     /**
      * @param array $items
+     * @return array
      */
     public function insertItems(array $items)
     {
-        $this->items = $items;
-        $this->assignItemType();
+        $this->items = $this->assignItemType($items);
     }
 
     /**
@@ -69,14 +62,15 @@ class ItemManager
      * In my opinion, choosing items class should be done while imputing the item into storage,
      * But because we are imputing a whole array, we need to use additional loop
      */
-    private function assignItemType()
+    public function assignItemType($array)
     {
         $temporaryArray = [];
 
-        foreach ($this->items as $item)
+        foreach ($array as $item) {
             $temporaryArray[] = $this->guessType($item);
+        }
 
-        $this->items = $temporaryArray;
+        return $temporaryArray;
     }
 
     /**
@@ -87,17 +81,21 @@ class ItemManager
      */
     private function guessType(array $item)
     {
-        if ($this->doesHaystackContainArrayValues(ItemTypeEnum::PRO_AGING, $item[0]))
+        if ($this->doesHaystackContainArrayValues(ItemTypeEnum::PRO_AGING, $item[0])) {
             return new ItemProAging($item);
+        }
 
-        if ($this->doesHaystackContainArrayValues(ItemTypeEnum::EVENT_PASS, $item[0]))
+        if ($this->doesHaystackContainArrayValues(ItemTypeEnum::EVENT_PASS, $item[0])) {
             return new ItemEventPass($item);
+        }
 
-        if ($this->doesHaystackContainArrayValues(ItemTypeEnum::LEGENDARY, $item[0]))
+        if ($this->doesHaystackContainArrayValues(ItemTypeEnum::LEGENDARY, $item[0])) {
             return new ItemLegendary($item);
+        }
 
-        if ($this->doesHaystackContainArrayValues(ItemTypeEnum::CONJURED, $item[0]))
+        if ($this->doesHaystackContainArrayValues(ItemTypeEnum::CONJURED, $item[0])) {
             return new ItemConjured($item);
+        }
 
         return new ItemNormal($item);
     }
@@ -111,10 +109,10 @@ class ItemManager
      */
     public function doesHaystackContainArrayValues($array, $haystack): bool
     {
-        foreach ($array as $name)
-        {
-            if ($this->contains($haystack, $name))
+        foreach ($array as $name) {
+            if ($this->contains($haystack, $name)) {
                 return true;
+            }
         }
 
         return false;
@@ -148,9 +146,10 @@ class ItemManager
      */
     public function getItem($index)
     {
-        if ($index >= 0 && $index <= $this->getLength())
+        if ($index >= 0 && $index <= $this->getLength()) {
             return $this->items[$index];
-        else
+        } else {
             return null;
+        }
     }
 }

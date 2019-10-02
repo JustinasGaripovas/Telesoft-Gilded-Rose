@@ -29,7 +29,7 @@ class ItemLegendaryTest extends TestCase
         );
 
         $this->gildedRose = new GildedRose(
-            $this->itemManager->getArray()
+            $this->itemManager
         );
 
         parent::setUp();
@@ -37,10 +37,7 @@ class ItemLegendaryTest extends TestCase
 
     public function testNormalItemBehaviour()
     {
-        $this->gildedRose->updateQuality();
-        $this->gildedRose->updateQuality();
-        $this->gildedRose->updateQuality();
-        $this->gildedRose->updateQuality();
+        $this->gildedRose->loopUpdateQuality(4);
 
         $this->assertEquals($this->itemManager->getItem(0), new ItemLegendary(['Sulfuras fresh', 0, 80]));
         $this->assertEquals($this->itemManager->getItem(1), new ItemLegendary(['Sulfuras close to sell date', 0, 80]));
@@ -51,9 +48,7 @@ class ItemLegendaryTest extends TestCase
 
     public function testOneLegendaryItemBehaviour()
     {
-        for ($i = 0 ;$i<=35;$i++) {
-            $this->gildedRose->updateQuality();
-        }
+        $this->gildedRose->loopUpdateQuality(35);
 
         $this->assertEquals($this->itemManager->getItem(0), new ItemLegendary(['Sulfuras fresh', 0, 80]));
     }

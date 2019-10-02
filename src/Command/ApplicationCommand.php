@@ -12,6 +12,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class ApplicationCommand extends Command
 {
+    private $startTime = null;
+
     protected function configure()
     {
         $this
@@ -28,18 +30,17 @@ class ApplicationCommand extends Command
     {
         $output->writeln('<comment>Starting gilded rose process</comment>');
 
-        $start = hrtime(true);
+        $this->timerStart();
 
-        $itemStorage = new ItemManager();
+        $itemManager = new ItemManager();
+        $itemManager->initializeItems();
 
-        $process = new GildedRose($itemStorage->loadItems());
+        $app = new GildedRose($itemManager);
+        $app->loopUpdateQuality(ItemValueEnum::DAYS);
 
-        for ($i=0;$i<ItemValueEnum::DAYS;$i++) {
-            $itemStorage->printOneDay($i);
-            $process->updateQuality();
-        }
+        $etc = $this->timerEnd($this->startTime);
 
-        $output->writeln("<comment>End of process in {$this->timerEnd($start)} milliseconds</comment>");
+        $output->writeln("End of process in {$etc} milliseconds");
 
         return 0;
     }
@@ -55,4 +56,8 @@ class ApplicationCommand extends Command
         return ((hrtime(true) - $startTime)/1e+6);
     }
 
+    private function timerStart()
+    {
+        $this->startTime = hrtime(true);
+    }
 }

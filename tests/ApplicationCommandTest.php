@@ -26,5 +26,4 @@ class ApplicationCommandTest extends TestCase
         $output = $this->commandTester->getDisplay();
         $this->assertContains('End of process', $output);
     }
-
 }

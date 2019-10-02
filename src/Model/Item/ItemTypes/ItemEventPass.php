@@ -24,20 +24,18 @@ class ItemEventPass extends AbstractItem
 
     public function process()
     {
-        if($this->isExpired()){
+        if ($this->isExpired()) {
             $this->quality = 0;
             $this->qualityModifier(0);
             return;
-        }
-        elseif ($this->isExpired(ItemValueEnum::SELL_IN_EVENT_RANGES[0])) {
+        } elseif ($this->isExpired(ItemValueEnum::SELL_IN_EVENT_RANGES[0])) {
             $this->qualityModifier(ItemValueEnum::QUALITY_EVENT_VALUE[0]);
             return;
-        }
-        elseif($this->isExpired(ItemValueEnum::SELL_IN_EVENT_RANGES[1])){
-            $this->qualityModifier(ItemValueEnum::QUALITY_EVENT_VALUE[1], ItemValueEnum::SELL_IN_NORMAL_AGING);
+        } elseif ($this->isExpired(ItemValueEnum::SELL_IN_EVENT_RANGES[1])) {
+            $this->qualityModifier(ItemValueEnum::QUALITY_EVENT_VALUE[1]);
             return;
-        }else{
-            $this->qualityModifier(ItemValueEnum::QUALITY_EVENT_VALUE_DEFAULT, ItemValueEnum::SELL_IN_NORMAL_AGING);
+        } else {
+            $this->qualityModifier(ItemValueEnum::QUALITY_EVENT_VALUE_DEFAULT);
         }
     }
 }

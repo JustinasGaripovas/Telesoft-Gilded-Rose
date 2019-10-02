@@ -30,7 +30,7 @@ class ItemConjuredTest extends TestCase
         );
 
         $this->gildedRose = new GildedRose(
-            $this->itemManager->getArray()
+            $this->itemManager
         );
 
         parent::setUp();
@@ -38,8 +38,7 @@ class ItemConjuredTest extends TestCase
 
     public function testNormalItemBehaviour()
     {
-        $this->gildedRose->updateQuality();
-        $this->gildedRose->updateQuality();
+        $this->gildedRose->loopUpdateQuality(2);
 
         $this->assertEquals($this->itemManager->getItem(0), new ItemConjured(['Conjured fresh', 98, 0]));
         $this->assertEquals($this->itemManager->getItem(1), new ItemConjured(['Conjured close to sell date', -1, 6]));
@@ -51,9 +50,7 @@ class ItemConjuredTest extends TestCase
 
     public function testOneConjuredItemBehaviour()
     {
-        for ($i = 0 ;$i<10;$i++) {
-            $this->gildedRose->updateQuality();
-        }
+        $this->gildedRose->loopUpdateQuality(10);
 
         $this->assertEquals($this->itemManager->getItem(0), new ItemConjured(['Conjured fresh', 90, 0]));
     }

@@ -24,9 +24,10 @@ class ItemConjured extends AbstractItem
 
     public function process()
     {
-        if ($this->isExpired())
+        if ($this->isExpired()) {
             $this->qualityModifier(ItemValueEnum::QUALITY_NORMAL_AGING*4);
-        else
+        } else {
             $this->qualityModifier(ItemValueEnum::QUALITY_NORMAL_AGING*2);
+        }
     }
 }

@@ -28,7 +28,7 @@ class ItemProAgingTest extends TestCase
         );
 
         $this->gildedRose = new GildedRose(
-            $this->itemManager->getArray()
+            $this->itemManager
         );
 
         parent::setUp();
@@ -36,10 +36,7 @@ class ItemProAgingTest extends TestCase
 
     public function testNormalItemBehaviour()
     {
-        $this->gildedRose->updateQuality();
-        $this->gildedRose->updateQuality();
-        $this->gildedRose->updateQuality();
-        $this->gildedRose->updateQuality();
+        $this->gildedRose->loopUpdateQuality(4);
 
         $this->assertEquals($this->itemManager->getItem(0), new ItemProAging(['Aged Brie fresh', 96, 4]));
         $this->assertEquals($this->itemManager->getItem(1), new ItemProAging(['Aged Brie close to sell date', -3, 14]));
@@ -50,12 +47,8 @@ class ItemProAgingTest extends TestCase
 
     public function testOneProAgingItemBehaviour()
     {
-        for ($i = 0 ;$i<10;$i++) {
-            $this->gildedRose->updateQuality();
-            var_dump(($this->itemManager->getItem(0)));
-        }
+        $this->gildedRose->loopUpdateQuality(10);
 
         $this->assertEquals($this->itemManager->getItem(0), new ItemProAging(['Aged Brie fresh', 90, 10]));
     }
-
 }
