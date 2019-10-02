@@ -22,6 +22,13 @@ abstract class AbstractItem
         return "{$this->name}, {$this->sell_in}, {$this->quality}";
     }
 
+    /**
+     *  Having calculations/processes here is not entirely recommended.
+     *  But for this current project, I don't think these processes being here will be a cause for concern
+     *  If we would follow MVC developing patterns, the best option would be to each class's calculations/processes
+     *  In controller or separate service.
+     */
+
     abstract public function process();
 
     /**

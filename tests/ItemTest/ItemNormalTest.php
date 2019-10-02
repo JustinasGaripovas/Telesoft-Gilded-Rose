@@ -45,4 +45,13 @@ class ItemNormalTest extends TestCase
         $this->assertEquals($this->itemManager->getItem(3), new ItemNormal(['Even even even more more more normal item', -3, 0]));
         $this->assertEquals($this->itemManager->getItem(4), new ItemNormal(['Even even even even more more more more normal item', -13, 0]));
     }
+
+    public function testOneNormalItemBehaviour()
+    {
+        for ($i = 0 ;$i<10;$i++) {
+            $this->gildedRose->updateQuality();
+        }
+
+        $this->assertEquals($this->itemManager->getItem(0), new ItemNormal(['Normal item', 0, 0]));
+    }
 }

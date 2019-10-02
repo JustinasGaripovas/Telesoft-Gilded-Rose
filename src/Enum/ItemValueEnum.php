@@ -3,7 +3,10 @@
 
 namespace App\Enum;
 
-
+/**
+ * Class ItemValueEnum
+ * @package App\Enum
+ */
 class ItemValueEnum
 {
     const DAYS = 15;

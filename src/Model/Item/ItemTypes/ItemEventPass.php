@@ -1,9 +1,6 @@
 <?php
 
-
 namespace App\Model\Item\ItemTypes;
-
-
 
 use App\Enum\ItemValueEnum;
 use App\Model\Item\AbstractItem;
@@ -12,7 +9,7 @@ class ItemEventPass extends AbstractItem
 {
     /**
      *
-     * Would want to make the array associative, but currently, thinking about leaving it as is to minimize data input complexity
+     * Would want to make the array associative, but currently, thinking about leaving it as is, to maintain original input methods
      *
      * array[0] => name
      * array[1]=> sell_in

@@ -48,4 +48,13 @@ class ItemLegendaryTest extends TestCase
         $this->assertEquals($this->itemManager->getItem(3), new ItemLegendary(['Sulfuras late after sell date', -0, 80]));
         $this->assertEquals($this->itemManager->getItem(4), new ItemLegendary(['Sulfuras crazy', -0, 80]));
     }
+
+    public function testOneLegendaryItemBehaviour()
+    {
+        for ($i = 0 ;$i<=35;$i++) {
+            $this->gildedRose->updateQuality();
+        }
+
+        $this->assertEquals($this->itemManager->getItem(0), new ItemLegendary(['Sulfuras fresh', 0, 80]));
+    }
 }

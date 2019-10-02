@@ -59,12 +59,20 @@ class ItemManager
         );
     }
 
+    /**
+     * @param array $items
+     */
     public function insertItems(array $items)
     {
         $this->items = $items;
         $this->assignItemType();
     }
 
+    /**
+     * A loop which determines each items class,
+     * In my opinion, choosing items class should be done while imputing the item into storage,
+     * But because we are imputing a whole array, we need to use additional loop
+     */
     private function assignItemType()
     {
         $temporaryArray = [];

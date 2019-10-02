@@ -3,6 +3,10 @@
 
 namespace App\Controller;
 
+/**
+ * Class GildedRose
+ * @package App\Controller
+ */
 class GildedRose
 {
     private $items = [];

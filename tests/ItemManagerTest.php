@@ -11,7 +11,6 @@ class ItemManagerTest extends TestCase
     public function testItemInsertion()
     {
         $itemManager = new ItemManager();
-
         $itemManager->insertItems(
             [
                 ['Normal item', 10, 20],
@@ -28,7 +27,6 @@ class ItemManagerTest extends TestCase
     public function testItemCorrectness()
     {
         $itemManager = new ItemManager();
-
         $itemManager->insertItems(
             [
                 ['Normal item', 10, 20],
@@ -37,6 +35,4 @@ class ItemManagerTest extends TestCase
 
         $this->assertEquals(get_class($itemManager->getItem(0)), ItemNormal::class);
     }
-
-
 }
