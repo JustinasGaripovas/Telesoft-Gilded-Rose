@@ -5,7 +5,7 @@ A small refractoring kata about a small merchant city.
 ## Built With
 
 * [Symfony console](https://symfony.com/doc/current/components/console.html) - Console symfony skeleton used
-* [Composer](https://getcomposer.org/) - Dependency Management
+* [Composer](https://getcomposer.org/) - Dependency Management for PHP 
 * [PHP 7.3](https://www.php.net/releases/7_3_0.php/) - Language version used
 
 ### Installing
