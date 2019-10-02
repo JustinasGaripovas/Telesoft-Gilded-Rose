@@ -26,8 +26,5 @@ class ItemLegendary extends AbstractItem
     {
         $this->quality = ItemValueEnum::QUALITY_LEGENDARY;
         $this->sell_in = 0;
-
     }
-
-
 }
