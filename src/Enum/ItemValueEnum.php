@@ -3,6 +3,8 @@
 namespace App\Enum;
 
 /**
+ * Perhaps these "setting" values should be stored not here, but in storage file or env file or database.
+ *
  * Class ItemValueEnum
  * @package App\Enum
  */
