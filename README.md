@@ -26,7 +26,7 @@ On the project directory:
 ```
 php app.php start
 ```
-# Note
+### Note
 
 If some settings like number of days or quality decrease number needs to be corrected
 change values in:
