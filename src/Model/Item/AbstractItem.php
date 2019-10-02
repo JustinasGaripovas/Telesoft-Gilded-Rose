@@ -35,9 +35,9 @@ abstract class AbstractItem
      * @param $qualityStep
      * @param $sellInStep
      */
-    protected function valueModifier($qualityStep, $sellInStep)
+    protected function qualityModifier($qualityStep)
     {
-        $this->sell_in += $sellInStep;
+        $this->sell_in += ItemValueEnum::SELL_IN_NORMAL_AGING;
 
         if($this->quality + $qualityStep < ItemValueEnum::QUALITY_FLOOR)
             $this->quality = ItemValueEnum::QUALITY_FLOOR;

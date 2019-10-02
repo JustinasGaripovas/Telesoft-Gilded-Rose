@@ -24,6 +24,6 @@ class ItemProAging extends AbstractItem
 
     public function process()
     {
-        $this->valueModifier(ItemValueEnum::QUALITY_PRO_AGING_AGING,ItemValueEnum::SELL_IN_NORMAL_AGING);
+        $this->qualityModifier(ItemValueEnum::QUALITY_PRO_AGING_AGING);
     }
 }

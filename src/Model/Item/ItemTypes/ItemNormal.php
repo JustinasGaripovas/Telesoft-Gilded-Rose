@@ -30,8 +30,8 @@ class ItemNormal extends AbstractItem
     public function process()
     {
         if ($this->isExpired())
-            $this->valueModifier(ItemValueEnum::QUALITY_NORMAL_AGING*2,ItemValueEnum::SELL_IN_NORMAL_AGING);
+            $this->qualityModifier(ItemValueEnum::QUALITY_NORMAL_AGING*2);
         else
-            $this->valueModifier(ItemValueEnum::QUALITY_NORMAL_AGING,ItemValueEnum::SELL_IN_NORMAL_AGING);
+            $this->qualityModifier(ItemValueEnum::QUALITY_NORMAL_AGING);
     }
 }
