@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use App\Enum\ItemTypeEnum;
+use App\Model\Item\Item;
 use App\Model\Item\ItemTypes\ItemConjured;
 use App\Model\Item\ItemTypes\ItemEventPass;
 use App\Model\Item\ItemTypes\ItemLegendary;
@@ -34,15 +35,15 @@ class ItemManager
     {
         $temporaryArray =
         [
-            ['+5 Dexterity Vest', 10, 20],
-            ['Aged Brie', 2, 0],
-            ['Elixir of the Mongoose', 5, 7],
-            ['Sulfuras, Hand of Ragnaros', 0, 80],
-            ['Sulfuras, Hand of Ragnaros', -1, 80],
-            ['Backstage passes to a TAFKAL80ETC concert', 15, 20],
-            ['Backstage passes to a TAFKAL80ETC concert', 10, 49],
-            ['Backstage passes to a TAFKAL80ETC concert', 5, 49],
-            ['Conjured Mana Cake', 3, 6]
+            new Item('+5 Dexterity Vest', 10, 20),
+            new Item('Aged Brie', 2, 0),
+            new Item('Elixir of the Mongoose', 5, 7),
+            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
+            new Item('Sulfuras, Hand of Ragnaros', -1, 80),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 15, 20),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 10, 49),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49),
+            new Item('Conjured Mana Cake', 3, 6)
         ];
 
         $this->items = $this->assignItemType($temporaryArray);
@@ -60,6 +61,8 @@ class ItemManager
      * A loop which determines each items class,
      * In my opinion, choosing items class should be done while imputing the item into storage,
      * But because we are imputing a whole array, we need to use additional loop
+     * @param $array
+     * @return array
      */
     public function assignItemType($array)
     {
@@ -75,24 +78,24 @@ class ItemManager
     /**
      * Need to make constraints to allow return on ITEM TYPE objects
      *
-     * @param array $item
+     * @param Item $item
      * @return ItemConjured|ItemEventPass|ItemLegendary|ItemNormal|ItemProAging
      */
-    private function guessType(array $item)
+    private function guessType(Item $item)
     {
-        if ($this->doesHaystackContainArrayValues(ItemTypeEnum::PRO_AGING, $item[0])) {
+        if ($this->doesHaystackContainArrayValues(ItemTypeEnum::PRO_AGING, $item->name)) {
             return new ItemProAging($item);
         }
 
-        if ($this->doesHaystackContainArrayValues(ItemTypeEnum::EVENT_PASS, $item[0])) {
+        if ($this->doesHaystackContainArrayValues(ItemTypeEnum::EVENT_PASS, $item->name)) {
             return new ItemEventPass($item);
         }
 
-        if ($this->doesHaystackContainArrayValues(ItemTypeEnum::LEGENDARY, $item[0])) {
+        if ($this->doesHaystackContainArrayValues(ItemTypeEnum::LEGENDARY, $item->name)) {
             return new ItemLegendary($item);
         }
 
-        if ($this->doesHaystackContainArrayValues(ItemTypeEnum::CONJURED, $item[0])) {
+        if ($this->doesHaystackContainArrayValues(ItemTypeEnum::CONJURED, $item->name)) {
             return new ItemConjured($item);
         }
 
@@ -146,9 +149,11 @@ class ItemManager
     public function getItem($index)
     {
         if ($index >= 0 && $index <= $this->getLength()) {
-            return $this->items[$index];
+            $item = $this->items[$index];
+            return new Item($item->name, $item->sell_in, $item->quality);
         } else {
             return null;
         }
     }
+
 }

@@ -4,22 +4,17 @@ namespace App\Model\Item\ItemTypes;
 
 use App\Enum\ItemValueEnum;
 use App\Model\Item\AbstractItem;
+use App\Model\Item\Item;
 
 class ItemEventPass extends AbstractItem
 {
     /**
-     * Would want to make the array associative, but currently, thinking about leaving it as is, to maintain original input methods
-     *
-     * array[0] => name
-     * array[1]=> sell_in
-     * array[2]=> quality
-     *
      * ItemProAging constructor.
-     * @param $array
+     * @param Item $item
      */
-    public function __construct($array)
+    public function __construct(Item $item)
     {
-        parent::__construct($array[0], $array[1], $array[2]);
+        parent::__construct($item);
     }
 
     public function process()

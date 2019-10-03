@@ -4,17 +4,15 @@ namespace App\Model\Item;
 
 use App\Enum\ItemValueEnum;
 
-abstract class AbstractItem
+abstract class AbstractItem extends Item
 {
-    public $name;
-    public $sell_in;
-    public $quality;
-
-    public function __construct($name, $sell_in, $quality)
+    /**
+     * ItemProAging constructor.
+     * @param Item $item
+     */
+    public function __construct(Item $item)
     {
-        $this->name    = $name;
-        $this->sell_in = $sell_in;
-        $this->quality = $quality;
+        parent::__construct($item->name, $item->sell_in, $item->quality);
     }
 
     public function __toString()
