@@ -52,6 +52,7 @@ vendor/bin/phpunit tests/PATH_TO_SIGLE_TEST_FILE
 ## Extra tought about project
 
   - Could have created better casting to ItemType function
+  - Unit test's are there, but they are laughable
 
 ## Versioning
 
