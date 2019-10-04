@@ -83,20 +83,18 @@ class ItemManager
      */
     private function guessType(Item $item)
     {
-        if ($this->doesHaystackContainArrayValues(ItemTypeEnum::PRO_AGING, $item->name)) {
-            return new ItemProAging($item);
+        foreach (ItemTypeEnum::RELATIONS as $type)
+        {
+            return $this->returnType($type, $item);
         }
 
-        if ($this->doesHaystackContainArrayValues(ItemTypeEnum::EVENT_PASS, $item->name)) {
-            return new ItemEventPass($item);
-        }
+        return null;
+    }
 
-        if ($this->doesHaystackContainArrayValues(ItemTypeEnum::LEGENDARY, $item->name)) {
-            return new ItemLegendary($item);
-        }
-
-        if ($this->doesHaystackContainArrayValues(ItemTypeEnum::CONJURED, $item->name)) {
-            return new ItemConjured($item);
+    private function returnType(array $temTypeArray, Item $item)
+    {
+        if ($this->doesHaystackContainArrayValues($temTypeArray['array'], $item->name)) {
+            return new $temTypeArray['class']($item);
         }
 
         return new ItemNormal($item);
