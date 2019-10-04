@@ -3,6 +3,7 @@
 namespace App\Model\Item;
 
 use App\Enum\ItemValueEnum;
+use Symfony\Component\Console\Exception\RuntimeException;
 
 abstract class AbstractItem extends Item
 {
@@ -36,7 +37,8 @@ abstract class AbstractItem extends Item
      */
     protected function qualityModifier($qualityStep)
     {
-        $this->sell_in += ItemValueEnum::SELL_IN_NORMAL_AGING;
+        if (!is_int($qualityStep))
+            throw new RuntimeException('Quality step must be integer');
 
         if ($this->quality + $qualityStep < ItemValueEnum::QUALITY_FLOOR) {
             $this->quality = ItemValueEnum::QUALITY_FLOOR;
@@ -51,6 +53,16 @@ abstract class AbstractItem extends Item
                 $this->quality += $qualityStep;
             }
         }
+
+        $this->sellInModifier(ItemValueEnum::SELL_IN_NORMAL_AGING);
+    }
+
+    protected function sellInModifier($sellInStep = null)
+    {
+        if (!is_int($sellInStep))
+            throw new RuntimeException('Sell in step must be integer');
+
+        $this->sell_in += $sellInStep;
     }
 
     /**
