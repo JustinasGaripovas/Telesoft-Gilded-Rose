@@ -1,6 +1,6 @@
 # Telesoft-Gilded-Rose
 
-A small refractoring kata about a small merchant city.
+A small refractoring kata about a small merchant city. [LINK TO KATA](https://github.com/emilybache/GildedRose-Refactoring-Kata)
 
 ## Built With
 
