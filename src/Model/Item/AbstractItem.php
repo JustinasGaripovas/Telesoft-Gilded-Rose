@@ -37,8 +37,7 @@ abstract class AbstractItem extends Item
      */
     protected function qualityModifier($qualityStep)
     {
-        if (!is_int($qualityStep))
-            throw new RuntimeException('Quality step must be integer');
+        $this->checkIfVariableIsInteger($qualityStep, 'Quality in step must be integer');
 
         if ($this->quality + $qualityStep < ItemValueEnum::QUALITY_FLOOR) {
             $this->quality = ItemValueEnum::QUALITY_FLOOR;
@@ -59,10 +58,15 @@ abstract class AbstractItem extends Item
 
     protected function sellInModifier($sellInStep = null)
     {
-        if (!is_int($sellInStep))
-            throw new RuntimeException('Sell in step must be integer');
+        $this->checkIfVariableIsInteger($sellInStep, 'Sell in step must be integer');
 
         $this->sell_in += $sellInStep;
+    }
+
+    private function checkIfVariableIsInteger($variable, $exceptionMessage)
+    {
+        if (!is_int($variable))
+            throw new RuntimeException($exceptionMessage);
     }
 
     /**
