@@ -51,7 +51,8 @@ vendor/bin/phpunit tests/PATH_TO_SIGLE_TEST_FILE
 
 ## Extra tought about project
 
-  - Could have created better casting to ItemType function
+  - Could have created better casting to ItemType function [FIXED](https://github.com/JustinasGaripovas/Telesoft-Gilded-Rose/commit/f1aca4d26ba5f4dbcf3cdf80b2ea14ad77eae502)
+  - Edited item class minimally [FIXED](https://github.com/JustinasGaripovas/Telesoft-Gilded-Rose/commit/30a70e4037d183011373ec9f1c18441e44b3758d)
   - Unit test's are there, but they are laughable
 
 ## Versioning
