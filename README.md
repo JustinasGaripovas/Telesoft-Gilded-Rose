@@ -54,6 +54,9 @@ vendor/bin/phpunit tests/PATH_TO_SIGLE_TEST_FILE
   - Could have created better casting to ItemType function [FIXED](https://github.com/JustinasGaripovas/Telesoft-Gilded-Rose/commit/f1aca4d26ba5f4dbcf3cdf80b2ea14ad77eae502)
   - Edited item class minimally [FIXED](https://github.com/JustinasGaripovas/Telesoft-Gilded-Rose/commit/30a70e4037d183011373ec9f1c18441e44b3758d)
   - Unit test's are there, but they are laughable
+  - Item manager should be turned into ItemFactory
+  - ItemFactory system could be better in general
+
 
 ## Versioning
 
